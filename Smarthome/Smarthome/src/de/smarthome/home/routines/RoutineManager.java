@@ -3,8 +3,8 @@ package de.smarthome.home.routines;
 import java.util.ArrayList;
 import java.io.*;
 import de.smarthome.home.rooms.Room;
-import de.smarthome.home.devices.Device;
-import de.smarthome.home.devices.Schedulable;
+import de.smarthome.devices.Device;
+import de.smarthome.devices.Schedulable;
 
 public class RoutineManager {
 

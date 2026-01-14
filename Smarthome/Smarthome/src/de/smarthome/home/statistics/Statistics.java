@@ -2,7 +2,7 @@ package de.smarthome.home.statistics;
 
 import java.util.ArrayList;
 import de.smarthome.home.rooms.Room;
-import de.smarthome.home.devices.Device;
+import de.smarthome.devices.Device;
 
 public class Statistics {
 

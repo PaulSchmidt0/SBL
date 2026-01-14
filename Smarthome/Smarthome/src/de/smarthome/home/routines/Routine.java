@@ -1,5 +1,5 @@
 package de.smarthome.home.routines;
-
+import de.smarthome.devices.Schedulable;
 import java.util.ArrayList;
 
 public class Routine {
@@ -54,7 +54,8 @@ public class Routine {
         System.out.println("Executing routine: " + name);
 
         for (Schedulable device : devices) {
-            device.execute();
+            device.schedule(startTime, endTime);
+            
         }
     }
 }
