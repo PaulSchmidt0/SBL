@@ -1,3 +1,4 @@
+//Adam Benamar, Matrikelnummer: 2679028
 package de.smarthome.home.routines;
 
 import java.util.ArrayList;
@@ -6,19 +7,37 @@ import de.smarthome.home.rooms.Room;
 import de.smarthome.devices.Device;
 import de.smarthome.devices.Schedulable;
 
+/**
+ * Die Klasse RoutineManager verwaltet alle Routinen im Smart-Home-System.
+ * Sie ermöglicht das Hinzufügen, Entfernen und Suchen von Routinen sowie
+ * das Laden und Speichern der Routinen in einer CSV-Datei.
+*/
 public class RoutineManager {
 
+    // Liste aller vorhandenen Routinen
     private ArrayList<Routine> routines;
+    // Pfad zur CSV-Datei für die Routinen
     private static final String FILE_PATH = "data/routines.csv";
 
+    /**
+     * Konstruktor: Initialisiert eine leere Routinenliste.
+     */
     public RoutineManager() {
         routines = new ArrayList<>();
     }
 
+    /**
+     * Gibt die Liste aller gespeicherten Routinen zurück.
+     */
     public ArrayList<Routine> getRoutines() {
         return routines;
     }
 
+    /**
+     * Fügt eine neue Routine hinzu, sofern keine Routine
+     * mit demselben Namen bereits existiert.
+     * Anschließend werden alle Routinen gespeichert.
+     */
     public void addRoutine(Routine routine) {
 
         if (findRoutineByName(routine.getName()) != null) {
@@ -30,11 +49,20 @@ public class RoutineManager {
         saveAllRoutines();
     }
 
+    /**
+     * Entfernt eine Routine aus der Liste und speichert
+     * die aktualisierte Routinenliste in der CSV-Datei.
+     */
     public void removeRoutine(Routine routine) {
         routines.remove(routine);
         saveAllRoutines();
     }
 
+    /**
+     * Sucht eine Routine anhand ihres Namens.
+     * Gibt die gefundene Routine zurück oder null,
+     * falls keine passende Routine existiert.
+     */
     public Routine findRoutineByName(String routineName) {
         for (Routine routine : routines) {
             if (routine.getName().equals(routineName)) {
@@ -44,6 +72,12 @@ public class RoutineManager {
         return null;
     }
 
+    /**
+     * Lädt alle Routinen aus der CSV-Datei und fügt sie
+     * der internen Routinenliste hinzu.
+     * Die Geräte werden anhand ihres Namens den
+     * übergebenen Räumen zugeordnet.
+     */
     public void loadRoutines(ArrayList<Room> rooms) {
 
         routines.clear();
@@ -88,6 +122,10 @@ public class RoutineManager {
         }
     }
 
+    /**
+     * Speichert alle vorhandenen Routinen in der CSV-Datei.
+     * Das Verzeichnis wird erstellt, falls es nicht existiert.
+     */
     public void saveAllRoutines() {
 
         File directory = new File("data");
@@ -116,6 +154,11 @@ public class RoutineManager {
         }
     }
 
+    /**
+     * Sucht ein Gerät anhand seines Namens in allen
+     * übergebenen Räumen.
+     * Gibt das gefundene Gerät zurück oder null.
+     */
     private Schedulable findDeviceByName(String name, ArrayList<Room> rooms) {
 
         for (Room room : rooms) {
@@ -123,6 +166,7 @@ public class RoutineManager {
                 if (device.getName().equals(name)) {
                     return device;
                 }
+
             }
         }
         return null;

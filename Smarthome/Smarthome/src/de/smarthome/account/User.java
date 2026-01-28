@@ -1,3 +1,4 @@
+//Adam Benamar, Matrikelnummer: 2679028
 package de.smarthome.account;
 
 public class User {
@@ -8,6 +9,9 @@ public class User {
     private String lastName;
     private boolean isLoggedIn;
 
+    /**
+     * Konstruktor zur Erstellung eines Benutzers mit allen Angaben.
+     */
     public User (String username, String password, String firstName, String lastName){
         this.username = username;
         this.password = password;
@@ -16,6 +20,10 @@ public class User {
         this.isLoggedIn = false;
     }
 
+    /**
+     * Überladener Konstruktor zur Erstellung eines Benutzers
+     * ohne Vor- und Nachnamen.
+     */
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -60,6 +68,11 @@ public class User {
         return firstName + " " + lastName;
     }
 
+    /**
+     * Gibt die Rolle des Benutzers zurück.
+     * Standardmäßig ist hier der User ein Child.
+     * Diese Methode wird in Unterklassen überschrieben.
+     */
     public Role getRole(){
         return Role.CHILD;
     }
@@ -80,10 +93,16 @@ public class User {
         this.lastName = lastName;
     }
 
+    /**
+     * Prüft, ob das übergebene Passwort korrekt ist.
+     */
     public boolean checkPassword(String password) {
         return this.password.equals(password);
     }
 
+    /**
+     * Vergleicht zwei Benutzer anhand ihres Benutzernamens.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -92,6 +111,9 @@ public class User {
         return this.username.equals(other.username);
     }
 
+    /**
+     * Gibt eine textuelle Darstellung des Benutzers zurück.
+     */
     @Override
     public String toString() {
         return "User details:\n" + "Name: " + getName() + "\n" + "Username: " + username;
